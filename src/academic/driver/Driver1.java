@@ -4,7 +4,7 @@ package academic.driver;
  * @author 12S23050_Yolanda Saragih
  */
 
-import academic.model.Enrollment;
+import academic.model.Enrollment; 
 import java.util.Scanner;
 
 public class Driver1 {
