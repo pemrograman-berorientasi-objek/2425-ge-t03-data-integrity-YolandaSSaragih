@@ -1,10 +1,5 @@
 package academic.driver;
 
-/**
- * @author 12S23017_Andrey Jonathan
- * @author 12S23050_Yolanda Saragih
- */
- 
 import academic.model.Course;
 import academic.model.Student;
 import academic.model.Enrollment;
@@ -18,6 +13,9 @@ public class Driver2 {
         ArrayList<Course> courses = new ArrayList<>();
         ArrayList<Student> students = new ArrayList<>();
         ArrayList<Enrollment> enrollments = new ArrayList<>();
+
+        // To store invalid messages
+        ArrayList<String> invalidMessages = new ArrayList<>();
 
         while (true) {
             String input = scanner.nextLine();
@@ -64,25 +62,28 @@ public class Driver2 {
                         // Check if the course exists
                         Course course = findCourse(courses, code);
                         if (course == null) {
-                            System.out.println("invalid course|" + code);
+                            invalidMessages.add("invalid course|" + code);
                             break;
                         }
 
                         // Check if the student exists
                         Student student = findStudent(students, id);
                         if (student == null) {
-                            System.out.println("invalid student|" + id);
+                            invalidMessages.add("invalid student|" + id);
                             break;
                         }
 
                         // If both course and student exist, create the enrollment
                         Enrollment enrollment = new Enrollment(code, id, angkatan, semester);
                         enrollments.add(enrollment);
-                        // Output the enrollment in the required format
-                        System.out.println(code + "|" + id + "|" + angkatan + "|" + semester + "|None");
                     }
                     break;
             }
+        }
+
+        // Print all invalid messages first
+        for (String message : invalidMessages) {
+            System.out.println(message);
         }
 
         // Print all courses
